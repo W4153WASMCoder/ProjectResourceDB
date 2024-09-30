@@ -21,7 +21,9 @@ create table if not exists projects(
     create_date      DATETIME DEFAULT NOW(),
     primary key (project_id),
     foreign key (language_name) references languages (language_name)
-                     on delete set null
+                                   on delete set null,
+    foreign key (owner_user_id) references db_user.users (user_id)
+                                   on delete set null
 );
 
 create table if not exists project_files(
