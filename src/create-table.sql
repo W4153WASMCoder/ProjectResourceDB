@@ -1,7 +1,3 @@
--- noinspection SqlDialectInspectionForFile
-
--- noinspection SqlNoDataSourceInspectionForFile
-
 drop schema if exists db_project_resource;
 
 create schema db_project_resource;
