@@ -1,2 +1,3 @@
-# ProjectResourceDB
-Database code for project resource microservice
+# ProjectResourcesDB
+
+![db_graph](./project_resource_db_graph.png)
