@@ -27,9 +27,9 @@ create table if not exists projects(
 create table if not exists project_files(
     file_id         int NOT NULL,
     project_id      int,
-    parent_dir      int DEFAULT NULL,
+    parent_directory      int DEFAULT NULL,
     file_name       nvarchar(100),
-    is_dir          bool DEFAULT FALSE,
+    is_directory          bool DEFAULT FALSE,
     create_date      DATETIME DEFAULT NOW(),
     primary key (file_id),
     foreign key (project_id) references projects (project_id)
