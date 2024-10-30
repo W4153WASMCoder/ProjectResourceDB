@@ -15,7 +15,7 @@ create table if not exists languages(
 
 create table if not exists projects(
     project_id       int NOT NULL,
-    owner_user_id    int,
+    owning_user_id    int,
     project_name     nvarchar(100),
     language_name    nvarchar(100),
     create_date      DATETIME DEFAULT NOW(),
