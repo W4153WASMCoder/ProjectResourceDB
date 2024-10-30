@@ -34,6 +34,6 @@ create table if not exists project_files(
     primary key (file_id),
     foreign key (project_id) references projects (project_id)
                           on delete set null,
-    foreign key (parent_dir) references project_files (file_id)
+    foreign key (parent_directory) references project_files (file_id)
                           on delete set null
 );
