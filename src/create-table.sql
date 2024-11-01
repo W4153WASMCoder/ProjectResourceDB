@@ -1,39 +1,43 @@
-drop schema if exists db_project_resource;
+-- Drop the schema if it exists, then create it
+DROP SCHEMA IF EXISTS db_project_resource;
+CREATE SCHEMA db_project_resource;
 
-create schema db_project_resource;
+-- Use the new schema
+USE db_project_resource;
 
-use db_project_resource;
-
-create table if not exists languages(
-    language_id             int NOT NULL,
-    language_name           nvarchar(100),
-    compiler_invocation     nvarchar(500),
-    creation_date      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    primary key (language_id),
+-- Create the languages table
+CREATE TABLE IF NOT EXISTS languages (
+    language_id INT AUTO_INCREMENT,
+    language_name NVARCHAR(100),
+    compiler_invocation NVARCHAR(500),
+    creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (language_id),
     UNIQUE (language_name)
 );
 
-create table if not exists projects(
-    project_id       int NOT NULL,
-    owning_user_id    int,
-    project_name     nvarchar(100),
-    language_name    nvarchar(100),
-    creation_date      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    primary key (project_id),
-    foreign key (language_name) references languages (language_name)
-                                   on delete set null
+-- Create the projects table
+CREATE TABLE IF NOT EXISTS projects (
+    project_id INT AUTO_INCREMENT,
+    owning_user_id INT,
+    project_name NVARCHAR(100),
+    language_name NVARCHAR(100),
+    creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (project_id),
+    FOREIGN KEY (language_name) REFERENCES languages (language_name)
+        ON DELETE SET NULL
 );
 
-create table if not exists project_files(
-    file_id         int NOT NULL,
-    project_id      int,
-    parent_directory      int DEFAULT NULL,
-    file_name       nvarchar(100),
-    is_directory          bool DEFAULT FALSE,
-    creation_date      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    primary key (file_id),
-    foreign key (project_id) references projects (project_id)
-                          on delete set null,
-    foreign key (parent_directory) references project_files (file_id)
-                          on delete set null
+-- Create the project_files table with a self-referencing foreign key for parent directories
+CREATE TABLE IF NOT EXISTS project_files (
+    file_id INT AUTO_INCREMENT,
+    project_id INT,
+    parent_directory INT DEFAULT NULL,
+    file_name NVARCHAR(100),
+    is_directory BOOLEAN DEFAULT FALSE,
+    creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (file_id),
+    FOREIGN KEY (project_id) REFERENCES projects (project_id)
+        ON DELETE SET NULL,
+    FOREIGN KEY (parent_directory) REFERENCES project_files (file_id)
+        ON DELETE SET NULL
 );
