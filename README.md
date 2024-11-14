@@ -11,16 +11,7 @@ This repository contains the SQL scripts needed to set up the `ProjectResourceDB
 
 ## Database Setup
 
-### Step 1: Clone the Repository
-
-Begin by cloning the repository to your local environment:
-
-```bash
-git clone https://github.com/W4153WASMCoder/ProjectResourceDB.git
-cd ProjectResourceDB/src
-```
-
-### Step 2: Create the Database
+### Step 1: Create the Database
 
 Log into your MySQL server and create a new database for the project resource data. Replace `db_project_resource` with your preferred database name if desired.
 
@@ -30,7 +21,7 @@ CREATE DATABASE db_project_resource;
 USE db_project_resource;
 ```
 
-### Step 3: Run the SQL Scripts
+### Step 2: Run the SQL Scripts
 
 With the `db_project_resource` database selected, run the provided SQL scripts to create tables and insert dummy data.
 
@@ -46,7 +37,7 @@ With the `db_project_resource` database selected, run the provided SQL scripts t
    mysql -u root -p db_project_resource < dummy-data.sql
    ```
 
-### Step 4: Verify the Setup
+### Step 3: Verify the Setup
 
 To confirm that the tables and data were created successfully, you can run the following query to list the tables:
 
